@@ -5,11 +5,11 @@ on: [push, workflow_dispatch]
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
 env:
-  RESOURCE-GROUP: rg-eshoponweb-NAME
-  LOCATION: westeurope
+  RESOURCE-GROUP: rg-eshoponweb
+  LOCATION: canadacentral
   TEMPLATE-FILE: infra/webapp.bicep
-  SUBSCRIPTION-ID: YOUR-SUBS-ID
-  WEBAPP-NAME: eshoponweb-webapp-NAME
+  SUBSCRIPTION-ID: f2ab3fbd-54fa-46a2-88ce-5c2a12ffafbf
+  WEBAPP-NAME: eshoponweb-webapp65842072
 
 jobs:
   #Build, test and publish .net web project in repository
@@ -79,10 +79,10 @@ jobs:
       - name: deploy
         uses: azure/arm-deploy@v2
         with:
-          subscriptionId: ${{ env.f2ab3fbd-54fa-46a2-88ce-5c2a12ffafbf }}
-          resourceGroupName: ${{ env.rg-eshoponweb }}
+          subscriptionId: ${{ env.SUBSCRIPTION-ID }}
+          resourceGroupName: ${{ env.RESOURCE-GROUP }}
           template: bicep-template/webapp.bicep
-          parameters: "webAppName=${{ env.eshoponweb-webapp65842072 }} location=${{ env.canadacentral }}"
+          parameters: "webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}"
           failOnStdErr: false
 
       # Publish website to Azure App Service (WebApp)
